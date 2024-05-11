@@ -34,7 +34,9 @@ public class SecurityConfig {
 
         httpSecurity.authorizeHttpRequests(config -> config
                 .requestMatchers("/security/sign-up").permitAll()   // this works without logging in, for example for sign up
-//                .requestMatchers("/request).hasAuthority("editor")
+                .requestMatchers("/masina/delete/").hasAuthority("editor")
+                .requestMatchers("/masina/update/").hasAuthority("editor")
+                .requestMatchers("/masina/create/").hasAuthority("editor")
                 .anyRequest().authenticated());
         httpSecurity.formLogin(form -> form.usernameParameter("username").passwordParameter("password").loginPage("/login")
                 .permitAll().successHandler(new AuthenticationSuccessHandler() {
